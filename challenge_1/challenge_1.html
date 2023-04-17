@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Encriptador</title>
+  </head>
+  <style>
+    ::placeholder {
+      color: #0A3871 ;
+      font: 'Inter';
+      font-weight: 400;
+      size: 32px;
+      line-height: 48px;
+    }
+    button {
+      width: 328px;
+      height: hug(67px);
+      border-radius: 24px;
+      padding: 24px;
+      gap: 8px;
+      font: 'Inter';
+    }
+  </style>
+  <body style="position: relative;width: 1280px;height: 710px;background: #F3F5FC;">
+    <form>
+     
+      <input style="border: 0;background:#F3F5FC ;position: absolute;width: 577px;height: 48px;left: 240px;top: 168px;font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 32px;line-height: 150%;color: #0A3871;" type="text" id="palabra" name="palabra" placeholder="Ingrese el texto aqui">
+
+      <div style="display: flex;flex-direction: row;align-items: center;padding: 0px;gap: 8px;position: absolute;width: 229px;height: 18px;left: 240px;top: 551px;">
+
+        <img src="bi_exclamation-circle-fill.png" style="width: 16px;height: 16px;flex: none;order: 0;flex-grow: 0;">
+
+        <p style="width: 205px;height: 18px;font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 12px;line-height: 150%;color: #495057;opacity: 0.8;flex: none;order: 1;flex-grow: 0;">Solo letras minúsculas y sin acentos</p>
+
+      </div>
+
+     <div style="display: flex;flex-direction: row;align-items: flex-start;padding: 0px;gap: 24px;position: absolute;width: 680px;height: 67px;left: 240px;top: 585px;">
+
+      <button style="display: flex;flex-direction: row;align-items: flex-start;background: #0A3871;flex: none;order: 0;flex-grow: 0;color: white;" type="button" onclick="ocultar()">Encriptar</button>
+    
+      <button style="box-sizing: border-box;display: flex;flex-direction: row;align-items: flex-start;background: #D8DFE8;border: 1px solid #0A3871;flex: none;order: 1;flex-grow: 0;left: 352px;color: #0A3871;" type="button" onclick="desencriptar()">Desencriptar</button>
+
+      </div> 
+      <rect/ style="position: absolute;width: 300px;height: 654px;left: 1000px;top: 25px;background: #FFFFFF;box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);border-radius: 32px;">
+
+      <img id="muneco" src="Muñeco.png" style="position: absolute;width: 236px;height: 209px;left: 35px;top: 150px;">
+      <button id="copiar" style="background: #FFFFFF;color:#0A3871;box-sizing: border-box;display: none;flex-direction: row;align-items: flex-start;padding: 24px;gap: 8px;position: absolute;width: 280px;height: 67px;left: 10px;top: 555px;border: 1px solid #0A3871;border-radius: 24px;" type="button" onclick="copyResultado()" >Copiar</button>
+      <div id="ocultable" style="display: flex;flex-direction: column;align-items: flex-start;padding: 0px;gap: 16px;position: absolute;width: 336px;height: 122px;left: 25px;top: 350px;">
+        <p style="text-align:center;width: 250px;height: 28px;font-family: 'Inter';font-style: normal;font-weight: 700;font-size: 24px;line-height: 120%;color: #343A40;flex: none;order: 0;align-self: stretch;flex-grow: 0;">Ningún mensaje fue encontrado</p>
+        <p style="width: 250px;height: 48px;font-family: 'Inter';font-style: normal;font-weight: 400;font-size: 16px;line-height: 150%;text-align: center;color: #495057;flex: none;order: 1;align-self: stretch;flex-grow: 0;">Ingresa el texto que desees encriptar o desencriptar.</p>
+        
+      </div>
+
+    </form>
+    <textarea id="resultado" style="position:absolute;left: 30px;border: none;top: 50px;color: #495057;font-size: 25px;font: 'Inter';font-weight: 600;size: 32px;line-height: 48px;width: 236px;"></textarea>
+
+    <script>
+      function encriptar() {
+        const palabraOriginal = document.getElementById("palabra").value;
+        const palabraEncriptada = palabraOriginal
+          .replace(/e/g, "enter")
+          .replace(/i/g, "imes")
+          .replace(/a/g, "ai")
+          .replace(/o/g, "ober")
+          .replace(/u/g, "ufat");
+        document.getElementById("resultado").textContent = palabraEncriptada;
+      }
+
+      function desencriptar() {
+        const palabraEncriptada = document.getElementById("palabra").value;
+        const palabraOriginal = palabraEncriptada
+          .replace(/enter/g, "e")
+          .replace(/imes/g, "i")
+          .replace(/ai/g, "a")
+          .replace(/ober/g, "o")
+          .replace(/ufat/g, "u");
+        document.getElementById("resultado").textContent = palabraOriginal;
+      }
+
+      function ocultar(){
+        var imagen = document.getElementById("muneco");
+        var seccion = document.getElementById("ocultable");
+        var boton = document.getElementById("copiar")
+        imagen.style.display = "none";
+        seccion.style.display = "none";
+        boton.style.display = "block";
+        encriptar();
+      }
+
+      function copyResultado(){
+        var aCopiar = document.getElementById("resultado");
+        aCopiar.select();
+        document.execCommand("copy");
+        alert("Hola");
+      }
+
+    </script>
+  </body>
+</html>
